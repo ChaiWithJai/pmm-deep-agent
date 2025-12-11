@@ -1,0 +1,9 @@
+{
+  "$schema": "https://langchain-ai.github.io/langgraph/langgraph.schema.json",
+  "python_version": "3.11",
+  "dependencies": ["./apps/agent"],
+  "graphs": {
+    "pmm-evaluator": "./apps/agent/src/pmm_agent/agent.py:agent"
+  },
+  "env": ".env"
+}

@@ -1,0 +1,95 @@
+[project]
+name = "pmm-agent"
+version = "0.1.0"
+description = "PMM Deep Agent - Evaluate and create B2B product marketing assets using proven frameworks"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Jai Bhagat", email = "jai@chaiwithjai.com" }
+]
+keywords = [
+    "pmm",
+    "product-marketing",
+    "positioning",
+    "messaging",
+    "langchain",
+    "langgraph",
+    "ai-agent",
+    "deep-agent",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    # Local deepagents library
+    "deepagents @ file:../../libs/deepagents",
+    # LangChain ecosystem (versions matching deepagents)
+    "langchain>=1.1.0",
+    "langchain-core>=1.1.0",
+    "langchain-anthropic>=1.2.0",
+    # Utilities
+    "pydantic>=2.0.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+]
+web = [
+    "playwright>=1.48.0",
+    "beautifulsoup4>=4.12.0",
+]
+
+[project.scripts]
+pmm-agent = "pmm_agent.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pmm_agent"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --cov=pmm_agent --cov-report=term-missing"
