@@ -2,6 +2,9 @@ FROM langchain/langgraph-api:3.11
 
 
 
+# -- Adding local package ./libs/deepagents --
+ADD ./libs/deepagents /deps/deepagents
+# -- End of local package ./libs/deepagents --
 # -- Adding local package ./apps/agent --
 ADD ./apps/agent /deps/agent
 # -- End of local package ./apps/agent --
