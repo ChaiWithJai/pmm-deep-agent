@@ -37,3 +37,7 @@ test-results/
 
 # LangGraph
 .langgraph-data/
+.langgraph_api/
+
+# Local Netlify folder
+.netlify
